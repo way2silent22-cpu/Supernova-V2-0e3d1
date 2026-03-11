@@ -4,70 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Troid - Apps</title>
+    <link rel="stylesheet" href="games.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #6a4c9c;
-            color: white;
-        }
-        header {
-            background-color: #5e3b8f;
-            color: white;
-            padding: 20px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-        header button {
-            background-color: #7f5f9f;
-            border: none;
-            padding: 10px 20px;
-            color: white;
-            font-size: 18px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-left: 20px;
-        }
-        header button:hover {
-            background-color: #9b6fcf;
-        }
-        .section {
-            padding: 40px;
-            text-align: center;
-            background-color: #7f5f9f;
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
         }
         .app-card {
-            display: inline-block;
-            width: 200px;
-            height: 250px;
-            background-color: #8e6ba7;
-            margin: 15px;
+            background: var(--card-bg);
+            aspect-ratio: 4 / 5;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 10px;
             border-radius: 10px;
             cursor: pointer;
-            color: white;
+            transition: transform 0.2s;
             text-align: center;
+            text-decoration: none;
+            color: white;
+        }
+        .app-card:hover {
+            transform: translateY(-5px);
+            background-color: var(--accent-color);
         }
         .app-card img {
             width: 100%;
-            height: 160px;
-            border-radius: 10px 10px 0 0;
+            height: 70%;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
         }
-        .app-card h3 {
-            margin-top: 10px;
-        }
-        footer {
-            background-color: #5e3b8f;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-        iframe.fullscreen {
+        .fullscreen-iframe {
             position: fixed;
             top: 0;
             left: 0;
@@ -75,19 +45,37 @@
             height: 100%;
             border: none;
             z-index: 1000;
+            background: black;
+        }
+        .close-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
         }
     </style>
     <script>
         function openFullscreen(url) {
             const iframe = document.createElement('iframe');
             iframe.src = url;
-            iframe.className = 'fullscreen';
+            iframe.className = 'fullscreen-iframe';
             iframe.setAttribute('allowfullscreen', '');
             document.body.appendChild(iframe);
 
-            iframe.onclick = () => {
-                iframe.remove(); // closes iframe on click, delete if not wanted
+            const closeBtn = document.createElement('button');
+            closeBtn.innerText = 'Close';
+            closeBtn.className = 'close-btn';
+            closeBtn.onclick = () => {
+                iframe.remove();
+                closeBtn.remove();
             };
+            document.body.appendChild(closeBtn);
         }
     </script>
 </head>
@@ -99,29 +87,54 @@
             <button onclick="location.href='apps.html'">Apps</button>
         </nav>
     </header>
-    <div class="section">
-        <h2>Full-Screen Apps</h2>
-        <div class="app-card" onclick="openFullscreen('https://web.whatsapp.com/')">
-            <img src="https://via.placeholder.com/200x160" alt="WhatsApp Web">
-            <h3>WhatsApp Web</h3>
-        </div>
-        <div class="app-card" onclick="openFullscreen('https://discord.com/app')">
-            <img src="https://via.placeholder.com/200x160" alt="Discord">
-            <h3>Discord</h3>
-        </div>
-        <div class="app-card" onclick="openFullscreen('https://www.youtube.com/')">
-            <img src="https://via.placeholder.com/200x160" alt="YouTube">
-            <h3>YouTube</h3>
-        </div>
-        <div class="app-card" onclick="openFullscreen('https://www.openai.com/chatgpt')">
-            <img src="https://via.placeholder.com/200x160" alt="ChatGPT">
-            <h3>ChatGPT</h3>
-        </div>
-        <div class="app-card" onclick="openFullscreen('https://www.google.com/drive/')">
-            <img src="https://via.placeholder.com/200x160" alt="Google Drive">
-            <h3>Google Drive</h3>
-        </div>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <a href="index.html" class="item">🔶 Home</a>
+                <a href="#" class="item">🤩 Popular</a>
+                <a href="#" class="item">⚠️ Recent</a>
+                <a href="#" class="item">👖 Favorites</a>
+            </div>
+            <div class="categories">
+                <a href="#" class="category">💬 Social</a>
+                <a href="#" class="category">📺 Video</a>
+                <a href="#" class="category">🛠️ Tools</a>
+                <a href="#" class="category">📁 Storage</a>
+                <a href="#" class="category">🤖 AI</a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <section class="game-header">
+                <h2>Full-Screen Apps</h2>
+            </section>
+            
+            <div class="app-grid">
+                <div class="app-card" onclick="openFullscreen('https://web.whatsapp.com/')">
+                    <img src="https://via.placeholder.com/200x160?text=WhatsApp+Web" alt="WhatsApp Web">
+                    <h3>WhatsApp Web</h3>
+                </div>
+                <div class="app-card" onclick="openFullscreen('https://discord.com/app')">
+                    <img src="https://via.placeholder.com/200x160?text=Discord" alt="Discord">
+                    <h3>Discord</h3>
+                </div>
+                <div class="app-card" onclick="openFullscreen('https://www.youtube.com/')">
+                    <img src="https://via.placeholder.com/200x160?text=YouTube" alt="YouTube">
+                    <h3>YouTube</h3>
+                </div>
+                <div class="app-card" onclick="openFullscreen('https://www.openai.com/chatgpt')">
+                    <img src="https://via.placeholder.com/200x160?text=ChatGPT" alt="ChatGPT">
+                    <h3>ChatGPT</h3>
+                </div>
+                <div class="app-card" onclick="openFullscreen('https://www.google.com/drive/')">
+                    <img src="https://via.placeholder.com/200x160?text=Google+Drive" alt="Google Drive">
+                    <h3>Google Drive</h3>
+                </div>
+            </div>
+        </main>
     </div>
+
     <footer>
         <p>&copy; 2024 Project Troid</p>
     </footer>
