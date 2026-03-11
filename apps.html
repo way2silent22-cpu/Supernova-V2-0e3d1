@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apps</title> <!-- change this to ur title of the tab -->
+    <title>Project Troid - Apps</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,7 +17,12 @@
             color: white;
             padding: 20px 30px;
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
         }
         header button {
             background-color: #7f5f9f;
@@ -88,8 +93,11 @@
 </head>
 <body>
     <header>
-        <button onclick="location.href='index.html'">Games</button>
-        <button onclick="location.href='apps.html'">Apps</button>
+        <h1>Project Troid</h1>
+        <nav>
+            <button onclick="location.href='index.html'">Games</button>
+            <button onclick="location.href='apps.html'">Apps</button>
+        </nav>
     </header>
     <div class="section">
         <h2>Full-Screen Apps</h2>
@@ -115,7 +123,7 @@
         </div>
     </div>
     <footer>
-        <p>&copy; 2024 insert website name</p>
+        <p>&copy; 2024 Project Troid</p>
     </footer>
 </body>
 </html>
