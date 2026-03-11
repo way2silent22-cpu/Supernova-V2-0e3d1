@@ -88,6 +88,18 @@
             color: #fca5a5;
             font-weight: 600;
         }
+
+        .blink-link {
+            margin-top: 12px;
+            width: 100%;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+            font-weight: 700;
+            background: transparent;
+            color: var(--text);
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -100,9 +112,23 @@
             <input id="password" name="password" type="password" autocomplete="current-password" required>
             <button type="submit">Unlock Site</button>
         </form>
+        <button class="blink-link" type="button" onclick="openBlinkLearning()" title="Hotkey: Alt+B">Open Blink Learning</button>
     </main>
 
     <script>
+        const blinkLearningUrl = 'https://www.blinklearning.com/portal/home'
+
+        function openBlinkLearning() {
+            window.location.href = blinkLearningUrl
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.altKey && event.key.toLowerCase() === 'b') {
+                event.preventDefault()
+                openBlinkLearning()
+            }
+        })
+
         const hasError = new URLSearchParams(window.location.search).get('error')
         if (hasError === '1') {
             document.getElementById('error').style.display = 'block'

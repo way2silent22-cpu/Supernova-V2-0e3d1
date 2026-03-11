@@ -38,6 +38,19 @@
         }
     </style>
     <script>
+        const blinkLearningUrl = 'https://www.blinklearning.com/portal/home';
+
+        function openBlinkLearning() {
+            window.location.href = blinkLearningUrl;
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.altKey && event.key.toLowerCase() === 'b') {
+                event.preventDefault();
+                openBlinkLearning();
+            }
+        });
+
         function openFullscreen(url) {
             const iframe = document.createElement('iframe');
             iframe.src = url;
@@ -62,6 +75,7 @@
         <nav>
             <button onclick="location.href='index.html'">Games</button>
             <button onclick="location.href='apps.html'">Apps</button>
+            <button onclick="openBlinkLearning()" title="Hotkey: Alt+B">Blink Learning</button>
         </nav>
     </header>
 
