@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalcSolver - Blue and Red</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="games.css">
+</head>
+<body>
+    <header>
+        <h1>CalcSolver</h1>
+        <nav>
+            <button onclick="location.href='index.html'">Games</button>
+            <button onclick="location.href='apps.html'">Apps</button>
+            <button onclick="openBlinkLearning()" title="Hotkey: Alt+B">Blink Learning</button>
+        </nav>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <a href="index.html" class="item">🔶 Home</a>
+                <a href="#" class="item">🤩 Played</a>
+                <a href="#" class="item">⚠️ Voted</a>
+                <a href="#" class="item">👖 Favorites</a>
+            </div>
+            <div class="categories">
+                <a href="#" class="category">📲 Mobile</a>
+                <a href="#" class="category">🤪 Top</a>
+                <a href="#" class="category">🤩 Nice</a>
+                <a href="#" class="category">⭐ Best</a>
+                <a href="#" class="category">⚔️ War</a>
+                <a href="#" class="category">🚗 Car</a>
+                <a href="#" class="category">🏹 Shooter</a>
+                <a href="#" class="category">🤹 Skill</a>
+                <a href="#" class="category">📐 Brain</a>
+                <a href="#" class="category">📺 3D</a>
+                <a href="#" class="category">👫 2 Player</a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <nav class="breadcrumbs">
+                Home » War Games » Blue and Red Game
+            </nav>
+
+            <section class="game-header">
+                <h1>BLUE AND RED</h1>
+            </section>
+
+            <section class="game-container">
+                <iframe 
+                    class="game-frame"
+                    src="https://fuzigames.com/games/blue-and-red/index.html" 
+                    allowfullscreen>
+                </iframe>
+                <div class="game-toolbar">
+                    <div class="tools left">
+                        <span>↺</span>
+                        <span>+</span>
+                        <span>-</span>
+                        <span>100%</span>
+                    </div>
+                    <div class="tools right">
+                        <span onclick="toggleFullscreen()">⤫ Fullscreen</span>
+                        <span>❤️ Like</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="game-info">
+                <div class="info-block">
+                    <h2>Control:</h2>
+                    <ul>
+                        <li><strong>W,A,S,D:</strong> move</li>
+                        <li><strong>Mouse:</strong> attack</li>
+                        <li><strong>Space:</strong> jump</li>
+                        <li><strong>Shift:</strong> sprint</li>
+                        <li><strong>E:</strong> interact</li>
+                    </ul>
+                </div>
+                <div class="info-block">
+                    <h2>Details:</h2>
+                    <p>Blue and Red is an FPS game where armies of knights fiercely battle to conquer rival castles in epic, fast-paced medieval warfare.</p>
+                </div>
+            </section>
+
+            <section class="related-games">
+                <h3>Similar Games</h3>
+                <div class="game-grid">
+                    <a href="spaceship-io.html" class="game-card">
+                        <img src="https://via.placeholder.com/150x120?text=Spaceship+io" alt="Spaceship io">
+                        <span>Spaceship io</span>
+                    </a>
+                    <a href="geometry-dash.html" class="game-card">
+                        <img src="https://via.placeholder.com/150x120?text=Geometry+Dash" alt="Geometry Dash">
+                        <span>Geometry Dash</span>
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 CalcSolver</p>
+    </footer>
+
+    <script>
+        const blinkLearningUrl = 'https://www.blinklearning.com/portal/home';
+
+        function openBlinkLearning() {
+            window.location.href = blinkLearningUrl;
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.altKey && event.key.toLowerCase() === 'b') {
+                event.preventDefault();
+                openBlinkLearning();
+            }
+        });
+
+        function toggleFullscreen() {
+            const elem = document.querySelector(".game-frame");
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) { /* Safari */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE11 */
+                elem.msRequestFullscreen();
+            }
+        }
+    </script>
+</body>
+</html>
